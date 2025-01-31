@@ -218,7 +218,7 @@ loadLanguageStrings(language);`
     {
       title: "Sort The Court: Royal Builder",
       period: "Feb 2023 - Present",
-      image: "public/sort-court/icon.png", // App icon
+      image: "sort-court/icon.png", // App icon
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.royalarcadegames.sortthecourt",
       description: "Ein erfolgreiches Mobile-Port des beliebten PC-Spiels mit über 100.000 Installationen und einer durchschnittlichen Bewertung von 4,2 Sternen. Komplette Überarbeitung der Steuerung und WebView-Integration für optimale mobile Performance.",
       technologies: ["WebView", "Java", "JavaScript", "HTML5", "Android Studio"],
