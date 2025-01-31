@@ -7,7 +7,7 @@ const Portfolio = () => {
   const personalProjects = [
     {
       title: "The Behold Game",
-      image: "public/behold-game-icon.png",
+      image: "behold-game-icon.png",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.webecomewhat.unofficial.game",
       description: "Ein erfolgreiches WebView-basiertes Android-Spiel mit über 1 Million Downloads",
       technologies: ["WebView", "Java", "JavaScript", "HTML5", "Android Studio"],
@@ -46,7 +46,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Cute Dolls Game",
-      image: "public/cutedolls/mirabel.png",
+      image: "cutedolls/mirabel.png",
       playStoreUrl: "https://play.google.com/store/apps/developer?id=Cute+Dolls+Game",
       description: "Eine erfolgreiche Kollektion von Casual Games, fokussiert auf Dress-Up und Simulation Spiele mit WebView Technologie",
       technologies: ["WebView", "Java", "HTML5", "Multiple Ad Networks"],
@@ -62,28 +62,28 @@ loadLanguageStrings(language);`
           title: "Lady-Bug Dress-Up: Girl Games",
           category: "Simulation",
           installs: "100,000+",
-          icon: "public/cutedolls/ladybug3.png",
+          icon: "cutedolls/ladybug3.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup.superhero.girl"
         },
         {
           title: "Lady-Bug Dress-Up & Fashion",
           category: "Simulation",
           installs: "100,000+",
-          icon: "public/cutedolls/ladybug1.png",
+          icon: "cutedolls/ladybug1.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup"
         },
         {
           title: "Lady-Bug Dress-Up & Fashion 2",
           category: "Simulation",
           installs: "50,000+",
-          icon: "public/cutedolls/ladybug2.png",
+          icon: "cutedolls/ladybug2.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup.superhero"
         },
         {
           title: "Mirabel Dressup: Encanto Games",
           category: "Role Playing",
           installs: "50,000+",
-          icon: "public/cutedolls/mirabel.png",
+          icon: "cutedolls/mirabel.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.mirabelencanto.dressupgames"
         }
         ,
@@ -91,35 +91,35 @@ loadLanguageStrings(language);`
           title: "Pony Princess Makeover & Dress",
           category: "Simulation",
           installs: "10,000+",
-          icon: "public/cutedolls/pony.png",
+          icon: "cutedolls/pony.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.pony.dressup.rainbowdash"
         },
         {
           title: "Burger Shop: Madness Cooking",
           category: "Simulation",
           installs: "1,000+",
-          icon: "public/cutedolls/burger.png",
+          icon: "cutedolls/burger.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.brugergame.madnesscooking"
         },
         {
           title: "Easter Makeup For Princesses",
           category: "Role Playing",
           installs: "1,000+",
-          icon: "public/cutedolls/easter.png",
+          icon: "cutedolls/easter.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.eastermakeup.girlsgame"
         },
         {
           title: "Ice Princess Halloween Costume",
           category: "Simulation",
           installs: "5,000+",
-          icon: "public/cutedolls/ice.png",
+          icon: "cutedolls/ice.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.ice.princess.halloween.costume.dressup"
         }
       ]
     },
     {
       title: "Christmas Spirit Studios",
-      image: "public/christmas/santaicon.png",
+      image: "christmas/santaicon.png",
       playStoreUrl: "https://play.google.com/store/apps/dev?id=6803960368106361037",
       description: "Eine vielfältige Kollektion von Weihnachtsspielen, entwickelt mit verschiedenen Technologien",
       technologies: ["WebView", "Unity 3D", "Java Game", "HTML5", "Android Studio", "Unity Ads"],
@@ -137,77 +137,77 @@ loadLanguageStrings(language);`
           title: "Christmas Magic Piano Tiles",
           category: "Music & Audio",
           installs: "10,000+",
-          icon: "public/christmas/piano.png",
+          icon: "christmas/piano.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.magic.tiles.christmas"
         },
         {
           title: "Santa Video Call Simulator",
           category: "Entertainment",
           installs: "10,000+",
-          icon: "public/christmas/santa1.png",
+          icon: "christmas/santa1.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.call.santa.christmas.games"
         },
         {
           title: "Christmas Nail Salon Art",
           category: "Casual",
           installs: "10,000+",
-          icon: "public/christmas/nail.png",
+          icon: "christmas/nail.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.christmas.nailart.salon"
         },
         {
           title: "Christmas Match 3: Candy Game",
           category: "Casual",
           installs: "1,000+",
-          icon: "public/christmas/match.png",
+          icon: "christmas/match.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.christmas.candy.match3.crush"
         },
         {
           title: "Christmas Coloring: Santa Fun",
           category: "Casual",
           installs: "1,000+",
-          icon: "public/christmas/coloring1.png",
+          icon: "christmas/coloring1.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.santas.festivecoloring"
         },
         {
           title: "Christmas Coloring Book Glow",
           category: "Art & Design",
           installs: "1,000+",
-          icon: "public/christmas/coloring.png",
+          icon: "christmas/coloring.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.glowxmas.santadraw"
         },
         {
           title: "Santa Call: Fake Video Chat",
           category: "Entertainment",
           installs: "1,000+",
-          icon: "public/christmas/santaicon.png",
+          icon: "christmas/santaicon.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.santa.videocall.christmas"
         },
         {
           title: "Christmas Hill Climb Driving",
           category: "Racing",
           installs: "500+",
-          icon: "public/christmas/hill.png",
+          icon: "christmas/hill.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.santaclausgame.snowyride"
         },
         {
           title: "Santa Simulator: Gift Drop",
           category: "Adventure",
           installs: "100+",
-          icon: "public/christmas/simulator.png",
+          icon: "christmas/simulator.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.santa.simulator.gift.drop"
         },
         {
           title: "Santa Rescue: Lava Puzzles",
           category: "Strategy",
           installs: "100+",
-          icon: "public/christmas/rescue.png",
+          icon: "christmas/rescue.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.santaescape.lavapuzzles"
         },
         {
           title: "Santa Ski: Christmas Game",
           category: "Adventure",
           installs: "100+",
-          icon: "public/christmas/ski.png",
+          icon: "christmas/ski.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.christmas.santaski.downhillrush"
         }
       ]
@@ -233,7 +233,7 @@ loadLanguageStrings(language);`
           title: "Live Performance",
           content: {
             type: "image",
-            src: "public/sort-court/metrics.png",
+            src: "sort-court/metrics.png",
             alt: "Sort The Court Live Metriken Dashboard"
           }
         },
@@ -317,11 +317,11 @@ loadLanguageStrings(language);`
             type: "multiImage",
             images: [
               {
-                src: "public/sort-court/review1.png",
+                src: "sort-court/review1.png",
                 alt: "Positives Nutzerfeedback nach Update"
               },
               {
-                src: "public/sort-court/review2.png",
+                src: "sort-court/review2.png",
                 alt: "Feedback zur Steuerungsimplementierung"
               }
             ]
