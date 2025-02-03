@@ -1,16 +1,54 @@
 import React, { useState } from "react";
 import { Github, PlayCircle, Mail, Twitter, X } from "lucide-react";
+import ChatInterface from './components/AIChat/ChatInterface';
+
+
+
+const ImageModal = ({ image, onClose }) => {
+  if (!image) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-[95%] h-auto md:w-[85%] lg:w-[75%]"
+        onClick={e => e.stopPropagation()}
+      >
+        <button 
+          onClick={onClose}
+          className="absolute -top-10 right-0 text-white hover:text-gray-300"
+        >
+          Close
+        </button>
+        <img 
+          src={image} 
+          alt="Enlarged view"
+          className="w-full h-auto object-contain rounded-lg"
+        />
+      </div>
+    </div>
+  );
+};
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState("persönlich");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const personalProjects = [
     {
       title: "The Behold Game",
+      period: "Oct 2022 - Present",
       image: "behold-game-icon.png",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.webecomewhat.unofficial.game",
       description: "Ein erfolgreiches WebView-basiertes Android-Spiel mit über 1 Million Downloads",
       technologies: ["WebView", "Java", "JavaScript", "HTML5", "Android Studio"],
+      metrics: {
+        title: "Live Performance",
+        image: "cutedolls/console.png",
+        description: "Aktuelle Performance-Übersicht der Cute Dolls Game Collection"
+      },
       codeExamples: [
         {
           title: "Mehrsprachige Unterstützung - Android",
@@ -46,10 +84,16 @@ loadLanguageStrings(language);`
     },
     {
       title: "Cute Dolls Game",
+      period: "Feb 2022 - Present",
       image: "cutedolls/mirabel.png",
       playStoreUrl: "https://play.google.com/store/apps/developer?id=Cute+Dolls+Game",
       description: "Eine erfolgreiche Kollektion von Casual Games, fokussiert auf Dress-Up und Simulation Spiele mit WebView Technologie",
       technologies: ["WebView", "Java", "HTML5", "Multiple Ad Networks"],
+      metrics: {
+        title: "Play Console Metriken",
+        image: "cutedolls/console.png",
+        description: "Aktuelle Performance-Übersicht der Cute Dolls Game Collection"
+      },
       achievements: [
         "Zwei Spiele mit über 100.000+ Downloads",
         "Mehrere Spiele mit 50.000+ Downloads",
@@ -119,10 +163,16 @@ loadLanguageStrings(language);`
     },
     {
       title: "Christmas Spirit Studios",
+      period: "Nov 2022 - Present",
       image: "christmas/santaicon.png",
       playStoreUrl: "https://play.google.com/store/apps/dev?id=6803960368106361037",
       description: "Eine vielfältige Kollektion von Weihnachtsspielen, entwickelt mit verschiedenen Technologien",
       technologies: ["WebView", "Unity 3D", "Java Game", "HTML5", "Android Studio", "Unity Ads"],
+      metrics: {
+        title: "Play Console Metriken",
+        image: "christmas/console.png",
+        description: "Aktuelle Performance-Übersicht der Christmas Spirit Studios Collection"
+      },
       achievements: [
         "Portfolio von 12 aktiven Spielen mit verschiedenen Kategorien",
         "Entwicklung eines lokalen Server-Systems mit NanoHTTPD für optimale WebView-Performance",
@@ -336,9 +386,47 @@ loadLanguageStrings(language);`
     },
     {
       title: "Fairytale Fashion House",
-      image: "/api/placeholder/64/64",
+      period: "Sept 2022 - Present",
+      image: "fairytale/icyqueen.png",
       description: "Entwicklung von Ice Princess Dress-Up Spielen",
       technologies: ["WebView", "Java", "HTML5"],
+      publishedGames: [
+        {
+          title: "Princess Castle Magical Design",
+          category: "Role Playing",
+          installs: "100,000+",
+          icon: "fairytale/castle.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.ffh.doll.house.design.ice.princess"
+        },
+        {
+          title: "Ice Princess: Frozen Dress up",
+          category: "Role Playing",
+          installs: "100,000+",
+          icon: "fairytale/frozendressup.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.ice.princess.frozen.dressup"
+        },
+        {
+          title: "Icy Queen's Frozen Realm",
+          category: "Role Playing",
+          installs: "100,000+",
+          icon: "fairytale/icyqueen.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.ice.queen.frozen"
+        },
+        {
+          title: "Ice Princesses: Frozen Fashion",
+          category: "Simulation",
+          installs: "50,000+",
+          icon: "fairytale/frozenfashion.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.ice.princess.frozen"
+        },
+        {
+          title: "Long-Hair Princess: Dress up",
+          category: "Role Playing",
+          installs: "10,000+",
+          icon: "fairytale/longhair.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.longhair.princess.tangled.dressup"
+        }
+      ],
       contributions: [
         "Entwicklung mehrerer Dress-Up Spiele",
         "WebView-Optimierung für bessere Performance",
@@ -347,9 +435,33 @@ loadLanguageStrings(language);`
     },
     {
       title: "PixelPulse Studios",
-      image: "/api/placeholder/64/64",
+      period: "Nov 2022 - Present",
+      image: "wednesday/game3.png",
       description: "Wednesday-themed WebView Games",
       technologies: ["WebView", "Java", "HTML5"],
+      publishedGames: [
+        {
+          title: "Wednesday Dress Up: Girl Games",
+          category: "Role Playing",
+          installs: "100,000+",
+          icon: "wednesday/game1.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.wednesday.dressup.girlgames"
+        },
+        {
+          title: "Wednesday Dress Up & Makeup 2",
+          category: "Role Playing",
+          installs: "50,000+",
+          icon: "wednesday/game2.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.wednesday.dressup.makeup2"
+        },
+        {
+          title: "Wednesday Dress Up Girl Game 3",
+          category: "Role Playing",
+          installs: "10,000+",
+          icon: "wednesday/game3.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.wednesday.dressup.girlgame3"
+        }
+      ],
       contributions: [
         "Entwicklung thematischer Spiele",
         "WebView-Integration und Optimierung",
@@ -358,6 +470,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Fatiha Dev Games",
+      period: "June 2022 - Present",
       image: "/api/placeholder/64/64",
       description: "Entwicklung von Kinder- und Autorennspiele",
       technologies: ["WebView", "Java", "HTML5"],
@@ -369,6 +482,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Stickman Fun Factory",
+      period: "Sept 2022 - Present",
       image: "/api/placeholder/64/64",
       description: "WebView-basierte Stickman-Spiele",
       technologies: ["WebView", "Java", "HTML5"],
@@ -468,20 +582,25 @@ loadLanguageStrings(language);`
                   />
                   
                   <div className="flex-1">
-                    <div className="flex items-center gap-4">
-                      <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
-                      {project.playStoreUrl && (
-                        <a 
-                          href={project.playStoreUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-blue-600 hover:text-blue-800"
-                        >
-                          <PlayCircle size={20} />
-                          <span>Play Store</span>
-                        </a>
-                      )}
-                    </div>
+                  <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                            {project.playStoreUrl && (
+                              <a 
+                                href={project.playStoreUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 text-blue-600 hover:text-blue-800"
+                              >
+                                <PlayCircle size={20} />
+                                <span>Play Store</span>
+                              </a>
+                            )}
+                          </div>
+                          {project.period && (
+                            <span className="text-gray-500">{project.period}</span>
+                          )}
+                        </div>
                     
                     <p className="text-gray-600 mt-2">{project.description}</p>
                     
@@ -528,6 +647,30 @@ loadLanguageStrings(language);`
                       </div>
                     )}
 
+                        {project.metrics && (
+                          <div className="mt-6">
+                            <details className="group">
+                              <summary className="flex justify-between items-center cursor-pointer list-none">
+                                <h4 className="font-semibold text-gray-900">{project.metrics.title}</h4>
+                                <div className="text-sm text-gray-500">
+                                  <span className="group-open:hidden">Zeigen ↓</span>
+                                  <span className="hidden group-open:inline">Verstecken ↑</span>
+                                </div>
+                              </summary>
+                              
+                              <div className="mt-4">
+                                <img 
+                                  src={project.metrics.image}
+                                  alt={project.metrics.description}
+                                  className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                                  onClick={() => setSelectedImage(project.metrics.image)}
+                                />
+                                <p className="mt-2 text-sm text-gray-600">{project.metrics.description}</p>
+                              </div>
+                            </details>
+                          </div>
+                        )}
+
                     {project.publishedGames && (
                       <div className="mt-6">
                         <details className="group">
@@ -564,6 +707,7 @@ loadLanguageStrings(language);`
                                       <span>Play Store</span>
                                     </a>
                                   </div>
+                                  
                                 </div>
                               </div>
                             ))}
@@ -593,7 +737,8 @@ loadLanguageStrings(language);`
                   <img 
                     src={project.image} 
                     alt={`${project.title} Icon`}
-                    className="w-16 h-16 rounded-lg object-cover"
+                    className="w-16 h-16 rounded-lg object-cover shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                    onClick={() => setSelectedImage(project.image)}
                   />
                   
                   <div className="flex-1">
@@ -632,28 +777,74 @@ loadLanguageStrings(language);`
                       </div>
                     </div>
 
+                                            {project.publishedGames && (
+                          <div className="mt-6">
+                            <details className="group">
+                              <summary className="flex justify-between items-center cursor-pointer list-none">
+                                <h4 className="font-semibold text-gray-900">Veröffentlichte Spiele</h4>
+                                <div className="text-sm text-gray-500">
+                                  <span className="group-open:hidden">Zeigen ↓</span>
+                                  <span className="hidden group-open:inline">Verstecken ↑</span>
+                                </div>
+                              </summary>
+                              
+                              <div className="mt-4 grid gap-4">
+                                {project.publishedGames.map((game, gameIndex) => (
+                                  <div key={gameIndex} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                    <img 
+                                      src={game.icon} 
+                                      alt={game.title}
+                                      className="w-12 h-12 rounded-lg"
+                                    />
+                                    <div className="flex-1">
+                                      <div className="flex items-center justify-between">
+                                        <h5 className="font-medium text-gray-900">{game.title}</h5>
+                                        <span className="text-sm text-gray-500">{game.installs}</span>
+                                      </div>
+                                      <div className="flex items-center gap-2 mt-1">
+                                        <span className="text-sm text-gray-600">{game.category}</span>
+                                        <a 
+                                          href={game.playStoreUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800"
+                                        >
+                                          <PlayCircle size={16} />
+                                          <span>Play Store</span>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </details>
+                          </div>
+                        )}
+
+
                     {/* Add Dropdowns Here */}
                     {project.dropdowns && project.dropdowns.length > 0 && (
-  <div className="mt-6 space-y-4">
-    {project.dropdowns.map((dropdown, dropIndex) => (
-      <details key={dropIndex} className="group">
-        <summary className="flex justify-between items-center cursor-pointer list-none">
-          <h4 className="font-semibold text-gray-900">{dropdown.title}</h4>
-          <div className="text-sm text-gray-500">
-            <span className="group-open:hidden">Zeigen ↓</span>
-            <span className="hidden group-open:inline">Verstecken ↑</span>
-          </div>
-        </summary>
-        
-        <div className="mt-4">
-          {/* Single Image Content */}
-          {dropdown.content.type === "image" && (
-            <img 
-              src={dropdown.content.src}
-              alt={dropdown.content.alt}
-              className="rounded-lg w-full"
-            />
-          )}
+      <div className="mt-6 space-y-4">
+        {project.dropdowns.map((dropdown, dropIndex) => (
+          <details key={dropIndex} className="group">
+            <summary className="flex justify-between items-center cursor-pointer list-none">
+              <h4 className="font-semibold text-gray-900">{dropdown.title}</h4>
+              <div className="text-sm text-gray-500">
+                <span className="group-open:hidden">Zeigen ↓</span>
+                <span className="hidden group-open:inline">Verstecken ↑</span>
+              </div>
+            </summary>
+            
+            <div className="mt-4">
+              {/* Single Image Content */}
+              {dropdown.content.type === "image" && (
+                <img 
+                  src={dropdown.content.src}
+                  alt={dropdown.content.alt}
+                  className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={() => setSelectedImage(dropdown.content.src)}
+                />
+              )}
 
           {/* Multiple Images Content */}
           {dropdown.content.type === "multiImage" && (
@@ -663,7 +854,8 @@ loadLanguageStrings(language);`
                   key={imgIndex}
                   src={image.src}
                   alt={image.alt}
-                  className="rounded-lg w-full"
+                  className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={() => setSelectedImage(image.src)}
                 />
               ))}
             </div>
@@ -725,7 +917,12 @@ loadLanguageStrings(language);`
     </p>
   </div>
 </footer>
+<ImageModal 
+  image={selectedImage} 
+  onClose={() => setSelectedImage(null)} 
+/>
 
+<ChatInterface />
 
     </div>
   );

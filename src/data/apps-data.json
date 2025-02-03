@@ -1,0 +1,291 @@
+[
+    {
+      "name": "The Behold Game",
+      "category": "WebView Game",
+      "downloads": 1000000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Multiple Language Support", 
+        "GDPR Compliant Ads",
+        "Native Android Integration"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.webecomewhat.unofficial.game"
+    },
+    {
+      "name": "Lady-Bug Dress-Up: Girl Games",
+      "category": "Simulation",
+      "downloads": 100000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Superhero Dress-Up",
+        "Multiple Costume Options"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup.superhero.girl"
+    },
+    {
+      "name": "Lady-Bug Dress-Up & Fashion",
+      "category": "Simulation",
+      "downloads": 100000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Fashion Dress-Up",
+        "Character Customization"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup"
+    },
+    {
+      "name": "Lady-Bug Dress-Up & Fashion 2",
+      "category": "Simulation",
+      "downloads": 50000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Superhero Theme",
+        "Fashion Design"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ladybugmira.dressup.superhero"
+    },
+    {
+      "name": "Mirabel Dressup: Encanto Games",
+      "category": "Role Playing",
+      "downloads": 50000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Character Dress-Up",
+        "Encanto Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.mirabelencanto.dressupgames"
+    },
+    {
+      "name": "Pony Princess Makeover & Dress",
+      "category": "Simulation",
+      "downloads": 10000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Pony Dress-Up",
+        "Character Customization"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.pony.dressup.rainbowdash"
+    },
+    {
+      "name": "Burger Shop: Madness Cooking",
+      "category": "Simulation",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Cooking Simulation",
+        "Restaurant Management"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.brugergame.madnesscooking"
+    },
+    {
+      "name": "Easter Makeup For Princesses",
+      "category": "Role Playing",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Makeup Game",
+        "Easter Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.eastermakeup.girlsgame"
+    },
+    {
+      "name": "Ice Princess Halloween Costume",
+      "category": "Simulation",
+      "downloads": 5000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Costume Dress-Up",
+        "Halloween Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.ice.princess.halloween.costume.dressup"
+    },
+    {
+      "name": "Christmas Magic Piano Tiles",
+      "category": "Music & Audio",
+      "downloads": 10000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Christmas Theme",
+        "Music Gameplay"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.magic.tiles.christmas"
+    },
+    {
+      "name": "Santa Video Call Simulator",
+      "category": "Entertainment",
+      "downloads": 10000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Christmas Theme",
+        "Video Call Simulation"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.call.santa.christmas.games"
+    },
+    {
+      "name": "Christmas Nail Salon Art",
+      "category": "Casual",
+      "downloads": 10000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Nail Art Game",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.christmas.nailart.salon"
+    },
+    {
+      "name": "Christmas Match 3: Candy Game",
+      "category": "Casual",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Match 3 Gameplay",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.christmas.candy.match3.crush"
+    },
+    {
+      "name": "Christmas Coloring: Santa Fun",
+      "category": "Casual",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Coloring Game",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.santas.festivecoloring"
+    },
+    {
+      "name": "Christmas Coloring Book Glow",
+      "category": "Art & Design",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Coloring Book",
+        "Glowing Effects"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.glowxmas.santadraw"
+    },
+    {
+      "name": "Santa Call: Fake Video Chat",
+      "category": "Entertainment",
+      "downloads": 1000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Fake Video Call",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.santa.videocall.christmas"
+    },
+    {
+      "name": "Christmas Hill Climb Driving",
+      "category": "Racing",
+      "downloads": 500,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Driving Game",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.santaclausgame.snowyride"
+    },
+    {
+      "name": "Santa Simulator: Gift Drop",
+      "category": "Adventure",
+      "downloads": 100,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Gift Dropping Gameplay",
+        "Santa Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.santa.simulator.gift.drop"
+    },
+    {
+      "name": "Santa Rescue: Lava Puzzles",
+      "category": "Strategy",
+      "downloads": 100,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Puzzle Gameplay",
+        "Santa Rescue Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.santaescape.lavapuzzles"
+    },
+    {
+      "name": "Santa Ski: Christmas Game",
+      "category": "Adventure",
+      "downloads": 100,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Skiing Gameplay",
+        "Christmas Theme"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.christmas.santaski.downhillrush"
+    },
+    {
+      "name": "Wednesday Dress Up: Girl Games",
+      "category": "Role Playing",
+      "downloads": 100000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Character Dress-Up",
+        "TV Show Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wednesday.dressup.girlgames"
+    },
+    {
+      "name": "Wednesday Dress Up & Makeup 2",
+      "category": "Role Playing",
+      "downloads": 50000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Makeup and Dress-Up",
+        "TV Show Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wednesday.dressup.makeup2"
+    },
+    {
+      "name": "Wednesday Dress Up Girl Game 3",
+      "category": "Role Playing",
+      "downloads": 10000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Character Customization",
+        "TV Show Themed"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wednesday.dressup.girlgame3"
+    },
+    {
+      "name": "Sort The Court: Royal Builder",
+      "category": "Strategy",
+      "downloads": 100000,
+      "developmentPeriod": "2022-2024",
+      "features": [
+        "WebView Integration",
+        "Kingdom Building",
+        "Decision Making Gameplay"
+      ],
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.royalarcadegames.sortthecourt"
+    }
+  ]

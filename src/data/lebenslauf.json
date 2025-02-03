@@ -1,0 +1,29 @@
+{
+    "name": "Outmane Hassani",
+    "birthDate": "04.10.1995",
+    "address": "Douar Ait Chaou, Ras Tabouda, 31302 Sefrou, Marokko",
+    "contact": {
+      "phone": "+212 626 408775",
+      "email": "outmane.hassani@gmail.com"
+    },
+    "experience": [
+      {
+        "company": "ELECTRON STUDIO SARLAU",
+        "position": "Freiberuflicher Softwareentwickler",
+        "period": "04/2023 - 12/2023",
+        "responsibilities": [
+          "WebView-Funktionen entwickelt",
+          "Unity 3D Projekte umgesetzt",
+          "Google Play Developer Console Management"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "ETEC",
+        "degree": "Diplom Fachtechniker",
+        "field": "Informatik-Entwicklung",
+        "period": "2015-2017"
+      }
+    ]
+  }
