@@ -8,3 +8,4 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+const VITE_ASSISTANT_ID = import.meta.env.VITE_ASSISTANT_ID

@@ -26,6 +26,7 @@ jobs:
         run: npm run build
         env:
           VITE_OPENAI_API_KEY: ${{ secrets.VITE_OPENAI_API_KEY }}
+          VITE_ASSISTANT_ID: ${{ secrets.VITE_ASSISTANT_ID }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
