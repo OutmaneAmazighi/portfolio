@@ -25,13 +25,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Copy env.js template
-        run: cp public/env.js.template dist/env.js
-
-      - name: Inject runtime config
+      - name: Create secure env.js
         run: |
-          sed -i "s|#{VITE_OPENAI_API_KEY}#|${{ secrets.VITE_OPENAI_API_KEY }}|g" dist/env.js
-          sed -i "s|#{VITE_ASSISTANT_ID}#|${{ secrets.VITE_ASSISTANT_ID }}|g" dist/env.js
+          echo "window.ENV_CONFIG = {
+            VITE_OPENAI_API_KEY: '',
+            VITE_ASSISTANT_ID: ''
+          };" > dist/env.js
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
@@ -57,3 +56,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          force_orphan: true
