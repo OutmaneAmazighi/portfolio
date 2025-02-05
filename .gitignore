@@ -4,6 +4,7 @@ dist/
 
 # Environment and secret files
 .env
+env.js
 .env.local
 public/env.js
 *.local
@@ -12,3 +13,5 @@ public/env.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+echo "dist/assets/config-*.js" >> .gitignore
