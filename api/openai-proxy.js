@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     console.log('Environment variables check:');
     console.log('API Key exists:', !!process.env.VITE_OPENAI_API_KEY);
     console.log('Assistant ID exists:', !!process.env.VITE_ASSISTANT_ID);
-    
+  
     // Check environment variables
     if (!process.env.VITE_OPENAI_API_KEY) {
       console.error('Missing OpenAI API Key');
@@ -49,21 +49,22 @@ export default async function handler(req, res) {
           ]
         })
       });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
+    
+      // Use the correct variable name here
+      if (!openaiResponse.ok) {
+        const errorData = await openaiResponse.json();
         console.error('OpenAI API Error:', errorData);
-        res.status(response.status).json(errorData);
+        res.status(openaiResponse.status).json(errorData);
         return;
       }
-  
+    
       if (req.body.stream) {
         res.setHeader('Content-Type', 'text/event-stream');
         res.setHeader('Cache-Control', 'no-cache');
         res.setHeader('Connection', 'keep-alive');
-        response.body.pipe(res);
+        openaiResponse.body.pipe(res); // corrected variable name
       } else {
-        const data = await response.json();
+        const data = await openaiResponse.json(); // corrected variable name
         res.status(200).json(data);
       }
     } catch (error) {
@@ -80,3 +81,4 @@ export default async function handler(req, res) {
       });
     }
   }
+  
