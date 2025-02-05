@@ -22,11 +22,15 @@ class AssistantService {
 
   async streamAssistant(query, onToken) {
     const headers = await configService.getAuthHeaders();
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // After (calling your proxy endpoint):
+    const response = await fetch('/api/openai-proxy', {
       method: 'POST',
-      headers,
+      headers: {
+        'Content-Type': 'application/json'
+        // Do not include an Authorization header here!
+      },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'gpt-4',      // or whichever model you want to use
         stream: true,
         messages: [
           { role: 'system', content: 'Du bist ein AI-Assistent ... (deine Anweisungen)' },
@@ -34,6 +38,7 @@ class AssistantService {
         ]
       })
     });
+
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder('utf-8');
