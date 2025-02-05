@@ -1,27 +1,29 @@
 // api/openai-proxy.js
 
-// This function handles incoming POST requests,
-// adds your secret API key, and forwards the request to OpenAI.
 export default async function handler(req, res) {
-    // Only allow POST requests for safety
+    // Allow only POST requests
     if (req.method !== 'POST') {
       res.status(405).json({ error: 'Method not allowed' });
       return;
     }
   
+    // Log environment status (remove in production)
+    if (!process.env.OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not set!");
+    } else {
+      console.log("OPENAI_API_KEY is set.");
+    }
+  
     try {
-      // Send the request to OpenAI. Adjust the URL if you need a different endpoint.
+      // Forward request to OpenAI
       const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // The API key is read from an environment variable on Vercel.
           'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
         },
-        // Forward the incoming request body to OpenAI.
         body: JSON.stringify(req.body)
       });
-  
       const data = await openaiResponse.json();
       res.status(openaiResponse.status).json(data);
     } catch (error) {
@@ -29,4 +31,3 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
-  

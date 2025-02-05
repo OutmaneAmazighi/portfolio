@@ -4,7 +4,7 @@ import { configService } from './configService';
 
 class AssistantService {
   constructor() {
-    this.client = null;
+    this.proxyUrl = 'https://portfolio-outmanes-projects-901794ba.vercel.app/api/openai-proxy';
     this.assistantId = null;
     this.threadId = null;
   }
@@ -21,51 +21,42 @@ class AssistantService {
   }
 
   async streamAssistant(query, onToken) {
-    const headers = await configService.getAuthHeaders();
-    // After (calling your proxy endpoint):
-    const response = await fetch('/api/openai-proxy', {
+    const response = await fetch(this.proxyUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-        // Do not include an Authorization header here!
       },
       body: JSON.stringify({
-        model: 'gpt-4',      // or whichever model you want to use
+        model: 'gpt-4',
         stream: true,
         messages: [
-          { role: 'system', content: 'Du bist ein AI-Assistent ... (deine Anweisungen)' },
+          { role: 'system', content: 'Du bist ein AI-Assistent für das Portfolio von Outmane.' },
           { role: 'user', content: query }
         ]
       })
     });
 
-
     const reader = response.body.getReader();
     const decoder = new TextDecoder('utf-8');
-    let done = false;
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      if (value) {
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-        
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const json = line.replace(/^data:\s*/, '');
-            if (json === '[DONE]') {
-              return;
-            }
-            try {
-              const parsed = JSON.parse(json);
-              const token = parsed?.choices?.[0]?.delta?.content;
-              if (token) {
-                onToken(token);
-              }
-            } catch (err) {
-              // Ignore JSON parse errors for incomplete chunks
-            }
+    
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n');
+      
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const json = line.replace(/^data:\s*/, '');
+          if (json === '[DONE]') return;
+          
+          try {
+            const parsed = JSON.parse(json);
+            const token = parsed?.choices?.[0]?.delta?.content;
+            if (token) onToken(token);
+          } catch (err) {
+            // Ignore JSON parse errors for incomplete chunks
           }
         }
       }
