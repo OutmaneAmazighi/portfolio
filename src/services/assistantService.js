@@ -1,9 +1,8 @@
 // src/services/assistantService.js
 class AssistantService {
   constructor() {
-    // Use the Vercel proxy URL
     this.proxyUrl = 'https://portfolio-outmanes-projects-901794ba.vercel.app/api/openai-proxy';
-    this.assistantId = null;
+    this.assistantId = "asst_KuUnwCYEPBsYMEm6I2OSuEIT";
     this.threadId = null;
   }
 
@@ -52,7 +51,6 @@ class AssistantService {
               if (token) onToken(token);
             } catch (err) {
               // Ignore JSON parse errors for incomplete chunks
-              console.log('Parse error:', err);
             }
           }
         }
@@ -64,61 +62,18 @@ class AssistantService {
   }
 
   async createAssistant() {
-    this.assistantId = "asst_KuUnwCYEPBsYMEm6I2OSuEIT";
     console.log('Using existing assistant from the dashboard');
+    return this.assistantId;
   }
 
-  // For completeness, let's keep a simplified version of thread management
+  // Simplified to avoid creating actual threads
   async createThread() {
-    try {
-      const response = await fetch(`${this.proxyUrl}/threads`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to create thread');
-      }
-      
-      const thread = await response.json();
-      this.threadId = thread.id;
-      return thread;
-    } catch (error) {
-      console.error('Error creating thread:', error);
-      throw error;
-    }
+    this.threadId = "thread_" + Date.now();
+    return { id: this.threadId };
   }
 
   async addMessage(content) {
-    try {
-      const response = await fetch(this.proxyUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: 'gpt-4',
-          messages: [
-            { 
-              role: 'system', 
-              content: 'Du bist ein AI-Assistent für das Portfolio von Outmane.' 
-            },
-            { role: 'user', content }
-          ]
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add message');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error adding message:', error);
-      throw error;
-    }
+    return this.streamAssistant(content, () => {});
   }
 }
 

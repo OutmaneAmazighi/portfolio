@@ -1,7 +1,7 @@
 {
     "version": 2,
-    "buildCommand": "npm run build",
-    "installCommand": "npm install",
+    "installCommand": "npm install -g vite && npm install",
+    "buildCommand": "npx vite build",
     "functions": {
       "api/**": {
         "runtime": "@vercel/node@2.15.3"
@@ -14,7 +14,8 @@
         "headers": {
           "Access-Control-Allow-Origin": "https://outmaneamazighi.github.io",
           "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-          "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+          "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          "Access-Control-Allow-Credentials": "true"
         }
       }
     ],
