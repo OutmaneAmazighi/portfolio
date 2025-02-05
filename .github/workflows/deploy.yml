@@ -25,8 +25,8 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Copy env.js to dist
-        run: cp public/env.js dist/
+      - name: Copy env.js template
+        run: cp public/env.js.template dist/env.js
 
       - name: Inject runtime config
         run: |
