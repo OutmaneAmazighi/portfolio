@@ -6,6 +6,16 @@ import { assistantService } from '../../services/assistantService.js';
 const ChatInterface = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const handleChat = async (message) => {
+    try {
+      const response = await openAIService.createChatCompletion([
+        { role: "user", content: message }
+      ]);
+      // Handle response
+    } catch (error) {
+      console.error('Chat error:', error);
+    }
+  };
   const [messages, setMessages] = useState([
     {
       role: 'assistant',

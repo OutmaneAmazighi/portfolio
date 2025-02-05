@@ -1,0 +1,5 @@
+// public/env.js
+window.ENV_CONFIG = {
+    VITE_OPENAI_API_KEY: '#{VITE_OPENAI_API_KEY}#',
+    VITE_ASSISTANT_ID: '#{VITE_ASSISTANT_ID}#'
+  };

@@ -6,14 +6,13 @@ on:
       - main
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -21,16 +20,21 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: npm install
 
       - name: Build project
         run: npm run build
-        env:
-          VITE_OPENAI_API_KEY: ${{ secrets.VITE_OPENAI_API_KEY }}
-          VITE_ASSISTANT_ID: ${{ secrets.VITE_ASSISTANT_ID }}
+
+      - name: Copy env.js to dist
+        run: cp public/env.js dist/
+
+      - name: Inject runtime config
+        run: |
+          sed -i "s|#{VITE_OPENAI_API_KEY}#|${{ secrets.VITE_OPENAI_API_KEY }}|g" dist/env.js
+          sed -i "s|#{VITE_ASSISTANT_ID}#|${{ secrets.VITE_ASSISTANT_ID }}|g" dist/env.js
 
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: production-files
           path: ./dist
@@ -43,20 +47,10 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: production-files
           path: ./dist
-
-      - name: Clear cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            ${{ github.workspace }}/.vite
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
