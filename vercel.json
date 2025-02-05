@@ -1,7 +1,7 @@
 {
     "version": 2,
-    "installCommand": "npm install -g vite && npm install",
-    "buildCommand": "npx vite build",
+    "buildCommand": "npm install -g vite && npm install && npx vite build",
+    "installCommand": "npm install",
     "functions": {
       "api/**": {
         "runtime": "@vercel/node@2.15.3"

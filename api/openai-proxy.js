@@ -17,15 +17,22 @@ export default async function handler(req, res) {
       return;
     }
   
-    // Verify environment variables
-    if (!process.env.VITE_OPENAI_API_KEY || !process.env.VITE_ASSISTANT_ID) {
-      console.error('Missing required environment variables');
-      res.status(500).json({ error: 'Server configuration error' });
+    // Debug logging
+    console.log('Environment variables check:');
+    console.log('API Key exists:', !!process.env.VITE_OPENAI_API_KEY);
+    console.log('Assistant ID exists:', !!process.env.VITE_ASSISTANT_ID);
+    
+    // Check environment variables
+    if (!process.env.VITE_OPENAI_API_KEY) {
+      console.error('Missing OpenAI API Key');
+      res.status(500).json({ error: 'Server configuration error - Missing API Key' });
       return;
     }
   
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      console.log('Request body:', JSON.stringify(req.body, null, 2));
+      
+      const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +43,7 @@ export default async function handler(req, res) {
           messages: [
             { 
               role: 'system', 
-              content: `You are an AI assistant (ID: ${process.env.VITE_ASSISTANT_ID}) for Outmane's portfolio. You are knowledgeable about his projects and experience.` 
+              content: 'You are an AI assistant for Outmane\'s portfolio. You are knowledgeable about his projects and experience.'
             },
             ...(req.body.messages || []).filter(msg => msg.role !== 'system')
           ]
@@ -44,9 +51,9 @@ export default async function handler(req, res) {
       });
   
       if (!response.ok) {
-        const error = await response.json();
-        console.error('OpenAI Error:', error);
-        res.status(response.status).json(error);
+        const errorData = await response.json();
+        console.error('OpenAI API Error:', errorData);
+        res.status(response.status).json(errorData);
         return;
       }
   
@@ -60,11 +67,16 @@ export default async function handler(req, res) {
         res.status(200).json(data);
       }
     } catch (error) {
-      console.error('Proxy Error:', error);
+      console.error('Detailed error:', {
+        message: error.message,
+        stack: error.stack,
+        body: req.body
+      });
+      
       res.status(500).json({ 
         error: 'Internal Server Error', 
         message: error.message,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
       });
     }
   }
