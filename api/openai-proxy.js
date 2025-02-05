@@ -2,13 +2,14 @@
 export default async function handler(req, res) {
     // Add CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://outmaneamazighi.github.io');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
     res.setHeader(
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     );
   
+    // Handle preflight requests
     if (req.method === 'OPTIONS') {
       res.status(200).end();
       return;
@@ -38,12 +39,9 @@ export default async function handler(req, res) {
       }
   
       if (stream) {
-        // Set appropriate headers for streaming
         res.setHeader('Content-Type', 'text/event-stream');
         res.setHeader('Cache-Control', 'no-cache');
         res.setHeader('Connection', 'keep-alive');
-  
-        // Pipe the response stream directly
         response.body.pipe(res);
       } else {
         const data = await response.json();
