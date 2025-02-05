@@ -4,6 +4,14 @@ let configCache = null;
 
 class ConfigService {
   async getConfig() {
+
+    console.log('Environment:', {
+        isDev: import.meta.env.DEV,
+        apiKeyEnv: import.meta.env.VITE_OPENAI_API_KEY,
+        assistantIdEnv: import.meta.env.VITE_ASSISTANT_ID,
+        windowEnvConfig: window.ENV_CONFIG
+      });
+
     // Clear cache when running in development
     if (import.meta.env.DEV) {
       configCache = null;

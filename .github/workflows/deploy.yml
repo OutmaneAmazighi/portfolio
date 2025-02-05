@@ -25,11 +25,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Create secure env.js
+      - name: Create env.js
         run: |
+          mkdir -p dist
           echo "window.ENV_CONFIG = {
-            VITE_OPENAI_API_KEY: '',
-            VITE_ASSISTANT_ID: ''
+            VITE_OPENAI_API_KEY: '${{ secrets.VITE_OPENAI_API_KEY }}',
+            VITE_ASSISTANT_ID: '${{ secrets.VITE_ASSISTANT_ID }}'
           };" > dist/env.js
 
       - name: Upload production-ready build files
@@ -56,4 +57,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true
