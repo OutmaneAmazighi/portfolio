@@ -17,18 +17,35 @@ export default async function handler(req, res) {
       return;
     }
   
+    // Verify environment variables
+    if (!process.env.VITE_OPENAI_API_KEY || !process.env.VITE_ASSISTANT_ID) {
+      console.error('Missing required environment variables');
+      res.status(500).json({ error: 'Server configuration error' });
+      return;
+    }
+  
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+          'Authorization': `Bearer ${process.env.VITE_OPENAI_API_KEY}`
         },
-        body: JSON.stringify(req.body)
+        body: JSON.stringify({
+          ...req.body,
+          messages: [
+            { 
+              role: 'system', 
+              content: `You are an AI assistant (ID: ${process.env.VITE_ASSISTANT_ID}) for Outmane's portfolio. You are knowledgeable about his projects and experience.` 
+            },
+            ...(req.body.messages || []).filter(msg => msg.role !== 'system')
+          ]
+        })
       });
   
       if (!response.ok) {
         const error = await response.json();
+        console.error('OpenAI Error:', error);
         res.status(response.status).json(error);
         return;
       }
@@ -46,7 +63,8 @@ export default async function handler(req, res) {
       console.error('Proxy Error:', error);
       res.status(500).json({ 
         error: 'Internal Server Error', 
-        message: error.message 
+        message: error.message,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
       });
     }
   }
