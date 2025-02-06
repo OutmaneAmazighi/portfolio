@@ -1,0 +1,5 @@
+// public/env.js
+window.ENV_CONFIG = {
+    VITE_OPENAI_API_KEY: '[RUNTIME_INJECTED]',
+    VITE_ASSISTANT_ID: '[RUNTIME_INJECTED]'
+  };

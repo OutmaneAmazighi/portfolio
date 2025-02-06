@@ -1,28 +1,32 @@
 // src/services/assistantService.js
+import { firebaseService } from '../config/firebase';
+
 class AssistantService {
   constructor() {
-    this.proxyUrl = 'https://portfolio-outmanes-projects-901794ba.vercel.app/api/openai-proxy';
-    this.assistantId = "asst_KuUnwCYEPBsYMEm6I2OSuEIT";
+    this.baseUrl = 'https://api.openai.com/v1/chat/completions';
     this.threadId = null;
   }
 
   async streamAssistant(query, onToken) {
     try {
-      const response = await fetch(this.proxyUrl, {
+      const config = await firebaseService.getConfig();
+      
+      const response = await fetch(this.baseUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config.openAIKey}`
         },
         body: JSON.stringify({
           model: 'gpt-4',
-          stream: true,
           messages: [
             { 
               role: 'system', 
               content: 'Du bist ein AI-Assistent für das Portfolio von Outmane. Du kennst dich gut mit seinen Projekten, Erfahrungen und Fähigkeiten aus.' 
             },
             { role: 'user', content: query }
-          ]
+          ],
+          stream: true
         })
       });
 
@@ -61,12 +65,16 @@ class AssistantService {
     }
   }
 
-  async createAssistant() {
-    console.log('Using existing assistant from the dashboard');
-    return this.assistantId;
+  async initialize() {
+    try {
+      const config = await firebaseService.getConfig();
+      return config.assistantId;
+    } catch (error) {
+      console.error('Error initializing assistant:', error);
+      throw error;
+    }
   }
 
-  // Simplified to avoid creating actual threads
   async createThread() {
     this.threadId = "thread_" + Date.now();
     return { id: this.threadId };

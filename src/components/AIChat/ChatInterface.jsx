@@ -6,16 +6,6 @@ import { assistantService } from '../../services/assistantService.js';
 const ChatInterface = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const handleChat = async (message) => {
-    try {
-      const response = await openAIService.createChatCompletion([
-        { role: "user", content: message }
-      ]);
-      // Handle response
-    } catch (error) {
-      console.error('Chat error:', error);
-    }
-  };
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -29,26 +19,20 @@ const ChatInterface = () => {
   // Initialize chat
   useEffect(() => {
     const init = async () => {
-        try {
-          console.log('Initializing assistant...');
-          await assistantService.createAssistant();
-          await assistantService.createThread();
-          console.log('Initialization complete');
-        } catch (error) {
-          console.error('Initialization error:', error);
-          setMessages(prev => [...prev, {
-            role: 'assistant',
-            content: `Technischer Fehler: ${error.message}. Bitte kontaktieren Sie den Administrator.`
-          }]);
-        }
-      };
+      try {
+        await assistantService.initialize();
+        await assistantService.createThread();
+        console.log('Initialization complete');
+      } catch (error) {
+        console.error('Initialization error:', error);
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `Technical error: ${error.message}. Please contact the administrator.`
+        }]);
+      }
+    };
 
     init();
-  }, []);
-
-  // Initialize vector service
-  useEffect(() => {
-    vectorService.initialize();
   }, []);
 
   const scrollToBottom = () => {
@@ -77,21 +61,28 @@ const ChatInterface = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-  
-    // 1) Add user message to state
+
     const userMessage = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
-  
+
     try {
-      await assistantService.addMessage(input);
-      const response = await assistantService.runAssistant();
-      
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: response
-      }]);
+      let response = '';
+      await assistantService.streamAssistant(input, (token) => {
+        response += token;
+        setMessages(prev => {
+          const newMessages = [...prev];
+          // Update or add assistant message
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage.role === 'assistant') {
+            lastMessage.content = response;
+          } else {
+            newMessages.push({ role: 'assistant', content: response });
+          }
+          return newMessages;
+        });
+      });
     } catch (error) {
       console.error('Error getting response:', error);
       setMessages(prev => [...prev, {
@@ -154,11 +145,6 @@ const ChatInterface = () => {
               }`}
             >
               {message.content}
-              {message.context && (
-                <div className="mt-2 text-xs text-gray-500">
-                  Basierend auf: {message.context.map(c => c.metadata?.project?.title).join(', ')}
-                </div>
-              )}
             </div>
           </div>
         ))}
