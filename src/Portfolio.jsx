@@ -569,11 +569,11 @@ loadLanguageStrings(language);`
           onClick={() => setActiveTab("entwicklung")}
           className={`px-4 py-2 rounded ${
             activeTab === "entwicklung"
-              ? "bg-blue-600 text-white"
+              ? "bg-indigo-600 text-white"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
         >
-          Entwicklungs-Logs
+          🔄 Portfolio-Entwicklung
         </button>
         </div>
 
