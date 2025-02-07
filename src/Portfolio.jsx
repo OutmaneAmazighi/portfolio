@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Github, PlayCircle, Mail, Twitter, X } from "lucide-react";
 import ChatInterface from './components/AIChat/ChatInterface';
+import DevLogs from './components/DevLogs/DevLogs';
 
 
 
@@ -39,14 +40,14 @@ const Portfolio = () => {
   const personalProjects = [
     {
       title: "The Behold Game",
-      period: "Oct 2022 - Present",
-      image: "behold-game-icon.png",
+      period: "Okt. 2022 - Heute",
+      image: "beholdgame/behold-game-icon.png",
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.webecomewhat.unofficial.game",
       description: "Ein erfolgreiches WebView-basiertes Android-Spiel mit über 1 Million Downloads",
       technologies: ["WebView", "Java", "JavaScript", "HTML5", "Android Studio"],
       metrics: {
-        title: "Live Performance",
-        image: "cutedolls/console.png",
+        title: "Leistungsübersicht",
+        image: "beholdgame/console.png",
         description: "Aktuelle Performance-Übersicht der Cute Dolls Game Collection"
       },
       codeExamples: [
@@ -84,7 +85,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Cute Dolls Game",
-      period: "Feb 2022 - Present",
+      period: "Feb 2022 - Heute",
       image: "cutedolls/mirabel.png",
       playStoreUrl: "https://play.google.com/store/apps/developer?id=Cute+Dolls+Game",
       description: "Eine erfolgreiche Kollektion von Casual Games, fokussiert auf Dress-Up und Simulation Spiele mit WebView Technologie",
@@ -163,7 +164,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Christmas Spirit Studios",
-      period: "Nov 2022 - Present",
+      period: "Nov 2022 - Heute",
       image: "christmas/santaicon.png",
       playStoreUrl: "https://play.google.com/store/apps/dev?id=6803960368106361037",
       description: "Eine vielfältige Kollektion von Weihnachtsspielen, entwickelt mit verschiedenen Technologien",
@@ -267,7 +268,7 @@ loadLanguageStrings(language);`
   const clientProjects = [
     {
       title: "Sort The Court: Royal Builder",
-      period: "Feb 2023 - Present",
+      period: "Feb 2023 - Heute",
       image: "sort-court/icon.png", // App icon
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.royalarcadegames.sortthecourt",
       description: "Ein erfolgreiches Mobile-Port des beliebten PC-Spiels mit über 100.000 Installationen und einer durchschnittlichen Bewertung von 4,2 Sternen. Komplette Überarbeitung der Steuerung und WebView-Integration für optimale mobile Performance.",
@@ -280,7 +281,7 @@ loadLanguageStrings(language);`
       ],
       dropdowns: [
         {
-          title: "Live Performance",
+          title: "Leistungsübersicht",
           content: {
             type: "image",
             src: "sort-court/metrics.png",
@@ -386,7 +387,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Fairytale Fashion House",
-      period: "Sept 2022 - Present",
+      period: "Sept 2022 - Heute",
       image: "fairytale/icyqueen.png",
       description: "Entwicklung von Ice Princess Dress-Up Spielen",
       technologies: ["WebView", "Java", "HTML5"],
@@ -435,7 +436,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "PixelPulse Studios",
-      period: "Nov 2022 - Present",
+      period: "Nov 2022 - Heute",
       image: "wednesday/game3.png",
       description: "Wednesday-themed WebView Games",
       technologies: ["WebView", "Java", "HTML5"],
@@ -470,7 +471,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Fatiha Dev Games",
-      period: "June 2022 - Present",
+      period: "June 2022 - Heute",
       image: "/api/placeholder/64/64",
       description: "Entwicklung von Kinder- und Autorennspiele",
       technologies: ["WebView", "Java", "HTML5"],
@@ -482,7 +483,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Stickman Fun Factory",
-      period: "Sept 2022 - Present",
+      period: "Sept 2022 - Heute",
       image: "/api/placeholder/64/64",
       description: "WebView-basierte Stickman-Spiele",
       technologies: ["WebView", "Java", "HTML5"],
@@ -538,10 +539,7 @@ loadLanguageStrings(language);`
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Über Mich</h2>
           <p className="text-gray-600">
-            Als leidenschaftlicher Spieleentwickler mit fundierter Erfahrung in der Entwicklung und 
-            Veröffentlichung von mobilen Spielen, spezialisiere ich mich auf Unity 3D und 
-            Android-Entwicklung. Meine Expertise umfasst die Implementierung von 
-            Monetarisierungsstrategien, WebView-Integration und Google Play Services.
+          Als Mobile Game Developer mit mehr als drei Jahren Erfahrung habe ich mich auf die Entwicklung von WebView-basierten Spielen und Android-Anwendungen spezialisiert. Meine Projekte, darunter mehrere Spiele mit über 100.000 Downloads, zeichnen sich durch optimierte Performance und benutzerfreundliche Implementierungen aus. Besondere Expertise bringe ich in der Unity 3D-Entwicklung, der WebView-Integration sowie der effizienten Implementierung von Monetarisierungsstrategien mit. Aktuell strebe ich eine Ausbildung zum Fachinformatiker in Deutschland an, um meine technischen Fähigkeiten weiter zu vertiefen.
           </p>
         </div>
 
@@ -567,11 +565,25 @@ loadLanguageStrings(language);`
           >
             Kundenprojekte
           </button>
+          <button
+          onClick={() => setActiveTab("entwicklung")}
+          className={`px-4 py-2 rounded ${
+            activeTab === "entwicklung"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Entwicklungs-Logs
+        </button>
         </div>
+
+        
 
         {/* Projects Grid */}
         <div className="space-y-6">
-          {activeTab === "persönlich" ? (
+          {activeTab === "entwicklung" ? (
+    <DevLogs />
+  ) :activeTab === "persönlich" ? (
             personalProjects.map((project, index) => (
               <div key={index} className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-start gap-4">
@@ -621,7 +633,7 @@ loadLanguageStrings(language);`
                       <div className="mt-6">
                         <details className="group">
                           <summary className="flex justify-between items-center cursor-pointer list-none">
-                            <h4 className="font-semibold text-gray-900">Code Implementation</h4>
+                            <h4 className="font-semibold text-gray-900">Codeimplementierung</h4>
                             <div className="text-sm text-gray-500">
                               <span className="group-open:hidden">Zeigen ↓</span>
                               <span className="hidden group-open:inline">Verstecken ↑</span>
@@ -737,8 +749,7 @@ loadLanguageStrings(language);`
                   <img 
                     src={project.image} 
                     alt={`${project.title} Icon`}
-                    className="w-16 h-16 rounded-lg object-cover shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                    onClick={() => setSelectedImage(project.image)}
+                    className="w-16 h-16 rounded-lg object-cover"
                   />
                   
                   <div className="flex-1">
@@ -824,62 +835,62 @@ loadLanguageStrings(language);`
 
                     {/* Add Dropdowns Here */}
                     {project.dropdowns && project.dropdowns.length > 0 && (
-      <div className="mt-6 space-y-4">
-        {project.dropdowns.map((dropdown, dropIndex) => (
-          <details key={dropIndex} className="group">
-            <summary className="flex justify-between items-center cursor-pointer list-none">
-              <h4 className="font-semibold text-gray-900">{dropdown.title}</h4>
-              <div className="text-sm text-gray-500">
-                <span className="group-open:hidden">Zeigen ↓</span>
-                <span className="hidden group-open:inline">Verstecken ↑</span>
-              </div>
-            </summary>
+                  <div className="mt-6 space-y-4">
+                    {project.dropdowns.map((dropdown, dropIndex) => (
+                      <details key={dropIndex} className="group">
+                        <summary className="flex justify-between items-center cursor-pointer list-none">
+                          <h4 className="font-semibold text-gray-900">{dropdown.title}</h4>
+                          <div className="text-sm text-gray-500">
+                            <span className="group-open:hidden">Zeigen ↓</span>
+                            <span className="hidden group-open:inline">Verstecken ↑</span>
+                          </div>
+                        </summary>
             
-            <div className="mt-4">
-              {/* Single Image Content */}
-              {dropdown.content.type === "image" && (
-                <img 
-                  src={dropdown.content.src}
-                  alt={dropdown.content.alt}
-                  className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                  onClick={() => setSelectedImage(dropdown.content.src)}
-                />
-              )}
+                    <div className="mt-4">
+                      {/* Single Image Content */}
+                      {dropdown.content.type === "image" && (
+                        <img 
+                          src={dropdown.content.src}
+                          alt={dropdown.content.alt}
+                          className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                          onClick={() => setSelectedImage(dropdown.content.src)}
+                        />
+                      )}
 
-          {/* Multiple Images Content */}
-          {dropdown.content.type === "multiImage" && (
-            <div className="space-y-4">
-              {dropdown.content.images.map((image, imgIndex) => (
-                <img 
-                  key={imgIndex}
-                  src={image.src}
-                  alt={image.alt}
-                  className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                  onClick={() => setSelectedImage(image.src)}
-                />
-              ))}
-            </div>
-          )}
+                      {/* Multiple Images Content */}
+                      {dropdown.content.type === "multiImage" && (
+                        <div className="space-y-4">
+                          {dropdown.content.images.map((image, imgIndex) => (
+                            <img 
+                              key={imgIndex}
+                              src={image.src}
+                              alt={image.alt}
+                              className="rounded-lg w-full shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                              onClick={() => setSelectedImage(image.src)}
+                            />
+                          ))}
+                        </div>
+                      )}
 
-          {/* Code Content */}
-          {dropdown.content.type === "code" && (
-  <div className="bg-gray-900 rounded-lg overflow-hidden max-w-full">
-    <div className="bg-gray-800 px-4 py-2 flex justify-between items-center">
-      <span className="text-gray-200 font-medium">Code Implementation</span>
-      <span className="text-gray-400 text-sm">{dropdown.content.language}</span>
-    </div>
-    <pre className="p-4 overflow-x-auto w-full">
-      <code className="text-gray-200 text-sm font-mono whitespace-pre-wrap break-words">
-        {dropdown.content.code}
-      </code>
-    </pre>
-  </div>
-)}
-        </div>
-      </details>
-    ))}
-  </div>
-)}
+                                {/* Code Content */}
+                                {dropdown.content.type === "code" && (
+                        <div className="bg-gray-900 rounded-lg overflow-hidden max-w-full">
+                          <div className="bg-gray-800 px-4 py-2 flex justify-between items-center">
+                            <span className="text-gray-200 font-medium">Codeimplementierung</span>
+                            <span className="text-gray-400 text-sm">{dropdown.content.language}</span>
+                          </div>
+                          <pre className="p-4 overflow-x-auto w-full">
+                            <code className="text-gray-200 text-sm font-mono whitespace-pre-wrap break-words">
+                              {dropdown.content.code}
+                            </code>
+                          </pre>
+                        </div>
+                      )}
+                              </div>
+                            </details>
+                          ))}
+                        </div>
+                      )}
                     
                     <div className="mt-4">
                       <h4 className="font-semibold text-gray-900 mb-2">Beiträge:</h4>
@@ -896,9 +907,10 @@ loadLanguageStrings(language);`
               </div>
             ))
           )}
+          
         </div>
+        
       </main>
-
 
 {/* Development Notice Banner */}
 <div className="bg-yellow-50 border-t border-yellow-200">
