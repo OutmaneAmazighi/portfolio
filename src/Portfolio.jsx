@@ -389,6 +389,7 @@ loadLanguageStrings(language);`
       title: "Fairytale Fashion House",
       period: "Sept 2022 - Heute",
       image: "fairytale/icyqueen.png",
+      playStoreUrl: "https://play.google.com/store/apps/dev?id=8450146723802294768",
       description: "Entwicklung von Ice Princess Dress-Up Spielen",
       technologies: ["WebView", "Java", "HTML5"],
       publishedGames: [
@@ -438,6 +439,7 @@ loadLanguageStrings(language);`
       title: "PixelPulse Studios",
       period: "Nov 2022 - Heute",
       image: "wednesday/game3.png",
+      playStoreUrl: "https://play.google.com/store/apps/dev?id=6612804287383853399",
       description: "Wednesday-themed WebView Games",
       technologies: ["WebView", "Java", "HTML5"],
       publishedGames: [
@@ -471,26 +473,82 @@ loadLanguageStrings(language);`
     },
     {
       title: "Fatiha Dev Games",
-      period: "June 2022 - Heute",
-      image: "/api/placeholder/64/64",
-      description: "Entwicklung von Kinder- und Autorennspiele",
-      technologies: ["WebView", "Java", "HTML5"],
+      period: "June 2022 - Present",
+      image: "fatihadev/mergecar.png",  // Main company icon
+      playStoreUrl: "https://play.google.com/store/apps/dev?id=7864821997571366908",
+      description: "Entwicklung erfolgreicher WebView-basierter Spiele mit mehreren 100k+ Downloads",
+      technologies: ["WebView", "Java", "HTML5", "Android Studio"],
+      publishedGames: [
+        {
+          title: "Heroes Mask Adventure PJ Game",
+          category: "Adventure",
+          installs: "100,000+",
+          icon: "fatihadev/mask1.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.masks.heroes.adventure"
+        },
+        {
+          title: "Masks Heroes Adventure of PJ 2",
+          category: "Adventure",
+          installs: "100,000+",
+          icon: "fatihadev/mask2.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.masks.heroes.adventure.game2"
+        },
+        {
+          title: "Merge Car: Merge Level Up Race",
+          category: "Racing",
+          installs: "10,000+",
+          icon: "fatihadev/mergecar.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.merge_car.merge_racers"
+        },
+        {
+          title: "Monster Trucks Games Jam 4x4",
+          category: "Sports",
+          installs: "10,000+",
+          icon: "fatihadev/monstertruck.png",
+          playStoreUrl: "https://play.google.com/store/apps/details?id=com.monstertrucks.games"
+        }
+      ],
       contributions: [
-        "2 Kinderspiele entwickelt",
-        "2 Autorennspiele implementiert",
-        "WebView-Optimierung für verschiedene Geräte"
+        "Zwei Spiele mit über 100.000+ Downloads",
+        "Zwei Spiele mit über 10.000+ Downloads",
+        "Erfolgreiche Integration von Werbenetzwerken",
+        "Optimierte WebView-Performance"
       ]
     },
     {
-      title: "Stickman Fun Factory",
-      period: "Sept 2022 - Heute",
-      image: "/api/placeholder/64/64",
-      description: "WebView-basierte Stickman-Spiele",
-      technologies: ["WebView", "Java", "HTML5"],
-      contributions: [
-        "Entwicklung von 2 Stickman-Spielen",
+      "title": "Stickman Fun Factory",
+      "period": "Sept 2022 - Heute",
+      "image": "stickman/stick1.png",
+      "playStoreUrl": "https://play.google.com/store/apps/dev?id=6957024540872901923",
+      "description": "WebView-basierte Stickman-Spiele",
+      "technologies": ["WebView", "Java", "HTML5"],
+      "publishedGames": [
+        {
+          "title": "Stickman Defenders: Epic Battle",
+          "category": "Strategy",
+          "installs": "100,000+",
+          "icon": "stickman/stick1.png",
+          "playStoreUrl": "https://play.google.com/store/apps/details?id=com.huggy.adventure.puzzle"
+        },
+        {
+          "title": "Stick War: Merge Shoot [UNVERÖFFENTLICHT]",
+          "category": "Casual",
+          "installs": "5,000+",
+          "icon": "stickman/stick2.png",
+          "playStoreUrl": "https://play.google.com/store/apps/details?id=com.stickman.stick.hero.merge"
+        },
+        {
+          "title": "Stickman Archers War Battle",
+          "category": "Casual",
+          "installs": "100+",
+          "icon": "stickman/stick3.png",
+          "playStoreUrl": "https://play.google.com/store/apps/details?id=com.stickwar.archerybattle"
+        }
+      ],
+      "contributions": [
+        "Entwicklung von 3 Stickman-Spielen",
         "WebView-Integration",
-        "Performance-Optimierung"
+        "Leistungsoptimierung"
       ]
     }
   ];
