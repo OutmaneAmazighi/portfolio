@@ -3,64 +3,116 @@ import { firebaseService } from '../config/firebase';
 
 class AssistantService {
   constructor() {
-    this.baseUrl = 'https://api.openai.com/v1/chat/completions';
+    this.baseUrl = 'https://api.openai.com/v1';
     this.threadId = null;
   }
 
-  async streamAssistant(query, onToken) {
+  /**
+   * Sends the query to the API, waits for the run to complete,
+   * then returns the final assistant answer.
+   */
+  async getAssistantResponse(query) {
     try {
       const config = await firebaseService.getConfig();
-      
-      const response = await fetch(this.baseUrl, {
+
+      // Create thread if it doesn't exist
+      if (!this.threadId) {
+        const threadResponse = await fetch(`${this.baseUrl}/threads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${config.openAIKey}`,
+            'OpenAI-Beta': 'assistants=v2'
+          }
+        });
+        if (!threadResponse.ok) {
+          throw new Error(`Thread creation failed: ${await threadResponse.text()}`);
+        }
+        const threadData = await threadResponse.json();
+        this.threadId = threadData.id;
+      }
+
+      // Add the user's message to the thread
+      const messageResponse = await fetch(`${this.baseUrl}/threads/${this.threadId}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${config.openAIKey}`
+          'Authorization': `Bearer ${config.openAIKey}`,
+          'OpenAI-Beta': 'assistants=v2'
         },
         body: JSON.stringify({
-          model: 'gpt-4',
-          messages: [
-            { 
-              role: 'system', 
-              content: 'Du bist ein AI-Assistent für das Portfolio von Outmane. Du kennst dich gut mit seinen Projekten, Erfahrungen und Fähigkeiten aus.' 
-            },
-            { role: 'user', content: query }
-          ],
-          stream: true
+          role: 'user',
+          content: query
         })
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!messageResponse.ok) {
+        throw new Error(`Message creation failed: ${await messageResponse.text()}`);
       }
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder('utf-8');
+      // Start a new run for the assistant
+      const runResponse = await fetch(`${this.baseUrl}/threads/${this.threadId}/runs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config.openAIKey}`,
+          'OpenAI-Beta': 'assistants=v2'
+        },
+        body: JSON.stringify({
+          assistant_id: config.assistantId
+        })
+      });
+      if (!runResponse.ok) {
+        throw new Error(`Run creation failed: ${await runResponse.text()}`);
+      }
+      const runData = await runResponse.json();
 
+      // Poll until the run status is "completed".
+      // We use a minimal yield (setTimeout with 0ms) to avoid busy-waiting.
+      let finalAnswer = '';
       while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const json = line.replace(/^data:\s*/, '');
-            if (json === '[DONE]') return;
-
-            try {
-              const parsed = JSON.parse(json);
-              const token = parsed?.choices?.[0]?.delta?.content;
-              if (token) onToken(token);
-            } catch (err) {
-              // Ignore JSON parse errors for incomplete chunks
+        const statusResponse = await fetch(
+          `${this.baseUrl}/threads/${this.threadId}/runs/${runData.id}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${config.openAIKey}`,
+              'OpenAI-Beta': 'assistants=v2'
             }
           }
+        );
+        if (!statusResponse.ok) {
+          throw new Error(`Status check failed: ${await statusResponse.text()}`);
+        }
+        const statusData = await statusResponse.json();
+        if (statusData.status === 'completed') {
+          const messagesResponse = await fetch(
+            `${this.baseUrl}/threads/${this.threadId}/messages`,
+            {
+              headers: {
+                'Authorization': `Bearer ${config.openAIKey}`,
+                'OpenAI-Beta': 'assistants=v2'
+              }
+            }
+          );
+          if (!messagesResponse.ok) {
+            throw new Error(`Messages retrieval failed: ${await messagesResponse.text()}`);
+          }
+          const messages = await messagesResponse.json();
+          // Find the assistant's message in the thread
+          const assistantMessage = messages.data.find(msg => msg.role === 'assistant');
+          if (assistantMessage?.content?.[0]?.text?.value) {
+            finalAnswer = assistantMessage.content[0].text.value;
+          }
+          break;
+        } else if (statusData.status === 'failed') {
+          throw new Error(`Run failed: ${statusData.last_error || 'Unknown error'}`);
+        } else {
+          // Yield control without adding any artificial delay
+          await new Promise(resolve => setTimeout(resolve, 0));
         }
       }
+      return finalAnswer;
     } catch (error) {
-      console.error('Error in streamAssistant:', error);
+      console.error('Error in getAssistantResponse:', error);
       throw error;
     }
   }
@@ -76,12 +128,12 @@ class AssistantService {
   }
 
   async createThread() {
-    this.threadId = "thread_" + Date.now();
-    return { id: this.threadId };
+    this.threadId = null;
+    return { id: "thread_" + Date.now() };
   }
 
   async addMessage(content) {
-    return this.streamAssistant(content, () => {});
+    return this.getAssistantResponse(content);
   }
 }
 

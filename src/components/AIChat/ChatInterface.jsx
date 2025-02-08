@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
-import { vectorService } from '../../services/vectorService';
 import { assistantService } from '../../services/assistantService.js';
 
 const ChatInterface = () => {
@@ -9,14 +8,15 @@ const ChatInterface = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Hallo! Ich bin Outmanes AI-Assistent. Ich kann Ihnen Fragen zu seinen Projekten, Fähigkeiten und Erfahrungen beantworten. Was möchten Sie wissen?'
+      content:
+        'Hallo! Ich bin Outmanes AI-Assistent. Ich kann Ihnen Fragen zu seinen Projekten, Fähigkeiten und Erfahrungen beantworten. Was möchten Sie wissen?'
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Initialize chat
+  // Initialize chat (e.g. thread creation) on mount.
   useEffect(() => {
     const init = async () => {
       try {
@@ -25,33 +25,27 @@ const ChatInterface = () => {
         console.log('Initialization complete');
       } catch (error) {
         console.error('Initialization error:', error);
-        setMessages(prev => [...prev, {
-          role: 'assistant',
-          content: `Technical error: ${error.message}. Please contact the administrator.`
-        }]);
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `Technical error: ${error.message}. Please contact the administrator.`
+          }
+        ]);
       }
     };
-
     init();
   }, []);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
+  // Auto-scroll when messages update.
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Tooltip timers.
   useEffect(() => {
-    const showTimer = setTimeout(() => {
-      setShowTooltip(true);
-    }, 2000);
- 
-    const hideTimer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 9000);
- 
+    const showTimer = setTimeout(() => setShowTooltip(true), 2000);
+    const hideTimer = setTimeout(() => setShowTooltip(false), 9000);
     return () => {
       clearTimeout(showTimer);
       clearTimeout(hideTimer);
@@ -61,45 +55,45 @@ const ChatInterface = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-
-    const userMessage = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+  
+    const currentInput = input;
+  
+    // Update messages with just the user's message initially
+    setMessages(prev => [
+      ...prev,
+      { role: 'user', content: currentInput }
+    ]);
+  
     setInput('');
     setIsLoading(true);
-
+  
     try {
-      let response = '';
-      await assistantService.streamAssistant(input, (token) => {
-        response += token;
-        setMessages(prev => {
-          const newMessages = [...prev];
-          // Update or add assistant message
-          const lastMessage = newMessages[newMessages.length - 1];
-          if (lastMessage.role === 'assistant') {
-            lastMessage.content = response;
-          } else {
-            newMessages.push({ role: 'assistant', content: response });
-          }
-          return newMessages;
-        });
-      });
+      // Wait for the final answer from the API
+      const finalAnswer = await assistantService.getAssistantResponse(currentInput);
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: finalAnswer }
+      ]);
     } catch (error) {
       console.error('Error getting response:', error);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: 'Entschuldigung, es gab einen Fehler bei der Verarbeitung Ihrer Anfrage.'
-      }]);
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: 'Entschuldigung, es gab einen Fehler bei der Verarbeitung Ihrer Anfrage.' }
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   if (!isOpen) {
     return (
       <div className="fixed bottom-6 right-6 group">
-        <div className={`absolute bottom-full right-0 mb-2 transition-opacity duration-300 ${
-          showTooltip ? 'opacity-100' : 'opacity-0'
-        }`}>
+        <div
+          className={`absolute bottom-full right-0 mb-2 transition-opacity duration-300 ${
+            showTooltip ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="bg-white text-gray-900 rounded-lg shadow-lg p-3 relative">
             <p className="whitespace-nowrap text-sm font-medium">Hi! Ich bin Outmanes AI Assistant 👋</p>
             <div className="absolute bottom-0 right-6 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white"></div>
