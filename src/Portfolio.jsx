@@ -597,7 +597,7 @@ loadLanguageStrings(language);`
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Über Mich</h2>
           <p className="text-gray-600">
-          Als Mobile Game Developer mit mehr als drei Jahren Erfahrung habe ich mich auf die Entwicklung von WebView-basierten Spielen und Android-Anwendungen spezialisiert. Meine Projekte, darunter mehrere Spiele mit über 100.000 Downloads, zeichnen sich durch optimierte Performance und benutzerfreundliche Implementierungen aus. Besondere Expertise bringe ich in der Unity 3D-Entwicklung, der WebView-Integration sowie der effizienten Implementierung von Monetarisierungsstrategien mit. Aktuell strebe ich eine Ausbildung zum Fachinformatiker in Deutschland an, um meine technischen Fähigkeiten weiter zu vertiefen.
+          Als IT-Spezialist mit mehr als drei Jahren Erfahrung habe ich technische Expertise in der Entwicklung, Integration und Wartung von mobilen Anwendungen erworben. Meine Projekte umfassen mehrere erfolgreiche Apps mit über einer Million Downloads, die sich durch zuverlässige Performance und benutzerfreundliche Implementierungen auszeichnen. Besondere Stärken bringe ich in der WebView-Integration, der Unity 3D-Entwicklung sowie im technischen Problemmanagement mit. Aktuell strebe ich eine Ausbildung zum Fachinformatiker in Deutschland an, um meine technischen Fähigkeiten sowohl in der Anwendungsentwicklung als auch in der Systemadministration weiter zu vertiefen.
           </p>
         </div>
 
