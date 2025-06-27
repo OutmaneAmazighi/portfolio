@@ -597,7 +597,8 @@ loadLanguageStrings(language);`
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Über Mich</h2>
           <p className="text-gray-600">
-          Als IT-Spezialist mit mehr als drei Jahren Erfahrung habe ich technische Expertise in der Entwicklung, Integration und Wartung von mobilen Anwendungen erworben. Meine Projekte umfassen mehrere erfolgreiche Apps mit über einer Million Downloads, die sich durch zuverlässige Performance und benutzerfreundliche Implementierungen auszeichnen. Besondere Stärken bringe ich in der WebView-Integration, der Unity 3D-Entwicklung sowie im technischen Problemmanagement mit. Aktuell strebe ich eine Ausbildung zum Fachinformatiker in Deutschland an, um meine technischen Fähigkeiten sowohl in der Anwendungsentwicklung als auch in der Systemadministration weiter zu vertiefen.
+          Ich bin ein technikbegeisterter IT-Anwender mit praktischer Erfahrung in der Entwicklung und Betreuung mobiler Anwendungen. In den letzten Jahren habe ich mehrere Android-Projekte umgesetzt und betreut – darunter erfolgreiche Apps mit über einer Million Downloads. Mein besonderes Interesse gilt jedoch der Verbindung von Hardware und Software: Netzwerktechnik, Systemadministration und die technische Integration im IT-Bereich faszinieren mich besonders.
+Derzeit bereite ich mich intensiv auf eine Ausbildung zum Fachinformatiker für Systemintegration in Deutschland vor, um meine Kompetenzen im Bereich IT-Infrastruktur, Fehleranalyse und Systemlösungen gezielt auszubauen und langfristig im professionellen Umfeld anzuwenden.
           </p>
         </div>
 
