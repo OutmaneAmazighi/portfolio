@@ -576,7 +576,7 @@ loadLanguageStrings(language);`
       <header className="bg-white shadow">
         <div className="max-w-5xl mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-gray-900">Outmane Hassani</h1>
-          <p className="text-xl text-gray-600 mt-2">Mobile Game Developer</p>
+          <p className="text-xl text-gray-600 mt-2">IT Support & Mobile Developer</p>
           
           <div className="flex gap-4 mt-4">
             <a 
