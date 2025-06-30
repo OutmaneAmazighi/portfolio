@@ -127,24 +127,27 @@ const Portfolio = () => {
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.webecomewhat.unofficial.game",
       description: "Ein erfolgreiches WebView-basiertes Android-Spiel mit über 1 Million Downloads",
       technologies: ["WebView", "Java", "JavaScript", "HTML5", "Android Studio"],
-      metrics: {
-        title: "Leistungsübersicht",
-        image: "beholdgame/console.png",
-        description: "Aktuelle Performance-Übersicht der Cute Dolls Game Collection"
-      },
-      codeExamples: [
+      dropdowns: [
         {
-          title: "Mehrsprachige Unterstützung - Android",
-          language: "java",
-          code: `// Get system language and load appropriate game version
-String language = Locale.getDefault().getLanguage();
-String filePath = "file:///android_asset/game_data/index.html?lang=" + language;
-gameView.loadUrl(filePath);`
+          title: "Leistungsübersicht", 
+          content: {
+            type: "image",
+            src: "beholdgame/console.png",
+            alt: "Viral Cycle Performance Metriken"
+          }
         },
         {
-          title: "Mehrsprachige Unterstützung - JavaScript",
-          language: "javascript",
-          code: `// Extract language parameter from URL
+          title: "Mehrsprachige Unterstützung - Implementation",
+          content: {
+            type: "code",
+            language: "java",
+            code: `// Get system language and load appropriate game version
+String language = Locale.getDefault().getLanguage();
+String filePath = "file:///android_asset/game_data/index.html?lang=" + language;
+gameView.loadUrl(filePath);
+
+// JavaScript-Integration für mehrsprachige Unterstützung
+// Extract language parameter from URL
 function getParameterByName(name) {
     const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
     const results = regex.exec(location.search);
@@ -155,6 +158,7 @@ function getParameterByName(name) {
 // Load appropriate language strings
 const language = getParameterByName('lang') || 'en';
 loadLanguageStrings(language);`
+          }
         }
       ],
       contributions: [
@@ -268,7 +272,7 @@ loadLanguageStrings(language);`
     },
     {
       title: "Royal Arcade Games",
-      period: "Feb 2023 - März 2025",
+      period: "Feb 2023 - Heute",
       image: "sort-court/icon.png",
       playStoreUrl: "https://play.google.com/store/apps/dev?id=6451101542115340097",
       description: "Entwicklung von strategischen Spielen unter dem Royal Arcade Games Publisher mit Fokus auf Königreich-Management und Guides",
@@ -288,6 +292,106 @@ loadLanguageStrings(language);`
           period: "Mai 2025 - Heute",
           icon: "sort-court/guide-icon.png",
           playStoreUrl: "https://play.google.com/store/apps/details?id=com.sortcourtguide.fancompanion"
+        }
+      ],
+      dropdowns: [
+        {
+          title: "Leistungsübersicht",
+          content: {
+            type: "image",
+            src: "sort-court/metrics.png",
+            alt: "Sort The Court Live Metriken Dashboard"
+          }
+        },
+        {
+          title: "Mobile WebView-Integration & Optimierungen",
+          content: {
+            type: "code",
+            language: "java",
+            code: `        // ===== KERNIMPLEMENTIERUNG =====
+        // WebView-Konfiguration für Desktop-Emulation
+        game.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
+        game.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); // Offlinefähigkeit
+        game.getSettings().setDomStorageEnabled(true); // HTML5-Speicherunterstützung
+        game.getSettings().setAllowFileAccessFromFileURLs(true); // Lokale Asset-Integration
+        
+        // JavaScript-Android-Bridge für Spielsteuerung
+        game.addJavascriptInterface(new WebAppInterface(this), "Android");
+        
+        // ===== MOBILE STEUERUNG =====
+        // Dynamische Positionierung der Y/N-Tasten
+        ViewTreeObserver yKeyObserver = yKey.getViewTreeObserver();
+        yKeyObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                yKey.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                originalYKeyX = yKey.getX(); // Ursprungsposition merken
+                originalYKeyY = yKey.getY();
+            }
+        });
+        
+        ViewTreeObserver nKeyObserver = nKey.getViewTreeObserver();
+        nKeyObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                nKey.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                originalNKeyX = nKey.getX();
+                originalNKeyY = nKey.getY();
+            }
+        });
+        
+        // Reset-Funktionalität für Tastenpositionen
+        resetPosKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yKey.setX(originalYKeyX); // Zurück zur Originalposition
+                yKey.setY(originalYKeyY);
+                nKey.setX(originalNKeyX);
+                nKey.setY(originalNKeyY);
+            }
+        });
+        
+        // ===== FULLSCREEN-MANAGEMENT =====
+        // Verzögerte Fullscreen-Aktivierung (nach 4s)
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                game.loadUrl("javascript:AndroidInterface.setFullscreen();");
+            }
+        }, 4000);
+        
+        // JavaScript-Integration für responsive Darstellung
+        // (Original-Code aus index.html)
+        var AndroidInterface = {
+            setFullscreen: function() {
+                SetFullscreen(1); // Android-Trigger
+            }
+        };
+        
+        function SetFullscreen(val) {
+            if (val == 1) {
+                document.body.classList.add('fullscreen');
+                canvas.width = window.innerWidth;  // Dynamische Anpassung
+                canvas.height = window.innerHeight;
+            }
+        }`
+          }
+        },
+        {
+          title: "Nutzer-Feedback & Updates",
+          content: {
+            type: "multiImage",
+            images: [
+              {
+                src: "sort-court/review1.png",
+                alt: "Positives Nutzerfeedback nach Update"
+              },
+              {
+                src: "sort-court/review2.png",
+                alt: "Feedback zur Steuerungsimplementierung"
+              }
+            ]
+          }
         }
       ],
       contributions: [
